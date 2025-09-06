@@ -1,0 +1,21 @@
+
+
+kubetcl apply -f hettps:// github/kubernetes-sigs//metrics-server/releases/latest/download/components.yaml
+
+
+then ..........
+
+kubectl -n kube-system edit deployment matrics-server
+
+
+>>>>>>Add the security bypass to deployment under container.args
+
+--kubelet-insecure-tls
+--kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
+
+
+>>>>>>>Restart>>>>>
+
+
+kubectl -n kube-system rollout restart deployment metrics-server
+
